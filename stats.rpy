@@ -3,7 +3,7 @@ init -100 python:
     import random
 
     # defines some stuff that applies to all stats 
-    # maybe stat sets can also contain other stat sets
+    # TODO maybe stat sets can also contain other stat sets
     class stat_set(object):
 
         def __init__(self, dice, sides, stats*, stats_values**):
@@ -25,10 +25,13 @@ init -100 python:
 
 
         def set_base(self, base):
+            """Alters the base value of the stat"""
             self.base = base
 
 
+
         def check(self, threshold):
+            """Makes a dice-roll check against this stat, then returns the result"""
             rolls = [random.randint(0, self.sides) for d in range(self.num_dice)]
 
             return sum(rolls) >= threshold
