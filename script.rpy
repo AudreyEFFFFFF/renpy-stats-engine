@@ -9,23 +9,22 @@ init python:
     CHA = "charisma"
     STR = "strength"
     INT = "intelligence"
-    my_stats = define_stat_set(2, 6, CHA, STR, INT)
-    cha = define_stat("charisma", 0, 2, 6)
+    my_stats = define_stat_set(2, 6, None, None, CHA, STR, INT)
 
 
 label start:
 
     scene bg room
 
-    show screen customize_stats(my_stats)
+    call customize_stats(my_stats, 6)
 
     show screen stats_sidebar(my_stats)
 
     "Making a [CHA] check."
 
-    $ check = my_stats.check(CHA, 7)
+    $ success = my_stats.check(CHA, 7)
 
-    if check:
+    if success:
         "Check successful"
     else:
         "Check failed"
@@ -33,9 +32,9 @@ label start:
 
     "Making an easy [CHA] check."
 
-    $ check = my_stats.check(CHA, 0)
+    $ success = my_stats.check(CHA, 0)
 
-    if check:
+    if success:
         "Check successful"
     else:
         "Check failed"
@@ -43,9 +42,9 @@ label start:
 
     "Making a hard [CHA] check."
 
-    $ check = my_stats.check(CHA, 12)
+    $ success = my_stats.check(CHA, 12)
 
-    if check:
+    if success:
         "Check successful"
     else:
         "Check failed"
@@ -53,9 +52,9 @@ label start:
 
     "Making an impossible [CHA] check."
 
-    $ check = my_stats.check(CHA, 13)
+    $ success = my_stats.check(CHA, 13)
 
-    if check:
+    if success:
         "Check successful"
     else:
         "Check failed"
